@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+#IMPORTANT: always execute from directory in which install.sh is present
+#var setup
+target_dir=$HOME
+#prereqs
+mkdir -p ${target_dir}/.xmonad
+
+#main loop
+for src in .bash_profile  .bashrc  bin  .ctags  .lftprc  .lynx  .lynxrc  .screenrc  .slrnrc  .urlview .vim  .vimrc  .vimperatorrc   .Xdefaults  .xinitrc  .xmonad/xmonad.hs  .Xresources  .xrdb  
+do
+		target=${target_dir}/${src}
+		if [ ! -e $target ]
+		then
+				echo "$target not found - creating link from ${src} to ${target}"
+				ln -s $(readlink -f ${src}) ${target}
+		elif [ ! -h $target ]
+		then
+				echo "$target exists but is not a symlink - skipping"
+
+		else
+				echo "$target exists and points to $(readlink -f $target) - skipping"
+		fi
+done
+#there is a bug with the bin creation, which causes a bin symlink to be created in bin

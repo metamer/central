@@ -1,0 +1,86 @@
+# File : .Xresources
+#xterm
+
+xterm*Background:               black
+xterm*Foreground:               gray
+
+
+XTerm*cursorColor: #DCDCCC
+XTerm*vt100.faceName: DejaVuSansMono
+XTerm*vt100.faceSize: 12
+XTerm*vt100.renderFont: true
+
+uxterm*cursorColor: #DCDCCC
+UXTerm*vt100.faceName: unifont
+UXTerm*vt100.renderFont: true
+UXTerm*vt100.faceSize: 20
+
+#urxvt
+! General
+!urxvt*termName:  rxvt-256color
+urxvt*loginShell:         true
+urxvt*scrollBar:         false
+urxvt*secondaryScroll:    true
+urxvt*saveLines:         65535
+urxvt*cursorBlink:       false
+urxvt*urgentOnBell:       true
+!urxvt*override-redirect:false
+!urxvt*borderLess:       false
+!urxvt*internalBorder:       0
+!urxvt*externalBorder:       0
+
+! Extensions
+urxvt*perl-lib:        /usr/lib/urxvt/perl/
+urxvt*perl-ext-common: default,matcher,searchable-scrollback
+urxvt*urlLauncher:     /usr/bin/firefox
+urxvt*matcher.button:  1
+!  - catch ugly URLs
+urxvt.cutchars:        `()'*<>[]{|}"
+
+! Appearance
+!  - use a bitmap font
+URxvt.font: xft:DejaVuSansMono:size=12,\
+				xft:Siddhanta:antialias=false,\
+				xft:Unifont:antialias=false:size=12
+
+!  - use xft for drawing fonts
+!urxvt*font:       xft:Terminus:8
+!  - cursor
+urxvt*cursorColor: #DCDCCC
+!  - pseudo transparency
+!urxvt*shading:    50
+!urxvt*transparent:true
+!
+!  - color scheme
+urxvt.background:  black
+urxvt.foreground:  gray
+! black + red
+!urxvt*color0:     #3f3f3f
+urxvt*color0:      #000000
+urxvt*color1:      #e01010
+! green + yellow
+urxvt*color2:      #00AA00
+urxvt*color3:      #FFFF00
+! blue + purple
+urxvt*color4:      #112037
+urxvt*color5:      #A020F0
+! cyan + white
+urxvt*color6:      #5B5BC7
+urxvt*color7:      #fefefe
+! bright-black + bright-red
+urxvt*color8:      #6a6a6a
+urxvt*color9:      #FF5555
+! bright-green + bright-yellow
+urxvt*color10:     #90EE90
+urxvt*color11:     #ffff2f
+! bright-blue + bright-purple
+urxvt*color12:     #5B5BC7
+urxvt*color13:     #e628ba
+! bright-cyan + bright-white
+urxvt*color14:     #7D7DFB
+urxvt*color15:     #ffffff
+
+!transparency
+URxvt*.transparent: true
+! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
+URxvt*.shading: 15

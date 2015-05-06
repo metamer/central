@@ -1,0 +1,8 @@
+"ignore compiled binaries
+bin/xflux
+bin/startRemote
+"ignore history/bookmarks
+.lynx/lynx_bookmarks.html
+.vim/.netrwhist
+.vim/doc/*
+.vim/plugin/*
