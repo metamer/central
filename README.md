@@ -1,8 +1,10 @@
 central
 =======
 
-central location for unix/unix-like scripts
+Central location for unix/unix-like scripts
 
-run install to install dotfiles
+These include configuration files (dotfiles)
 
-please note that vim color files may have their own licenses.
+Run install to install files using symlinks
+
+Please note that certain files such as the vim color files may have their own licenses.
