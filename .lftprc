@@ -1,0 +1,5 @@
+set ftp:ssl-force on
+set ssl:verify-certificate on
+set ssl:ca-file "~/util/ca-bundle.crt"
+set ftp:use-feat off
+set ftp:ssl-protect-data on

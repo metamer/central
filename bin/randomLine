@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use List::Util 'shuffle';
+
+my @lines;
+
+while(<>){
+	push(@lines,$_);
+}
+
+my @shuffled = shuffle(@lines);
+print(pop(@shuffled));

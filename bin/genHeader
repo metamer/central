@@ -1,0 +1,54 @@
+#!/usr/bin/perl
+
+##
+# Executable which generates a header file given a filename and namespace
+# Include guard format is NAMESPACE_FILENAME_EXTENSION
+##
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+
+my $headerToMake;
+my $namespace;
+my $extension="hpp";
+my $author="insidiousnoxious";
+my $description;
+my $help;
+
+my $usageString = "usage: $0 -f filename -n namespace [-h] [-e extension] [-a author] [-d description]";
+
+GetOptions(
+	'filename=s'=> \$headerToMake,
+	'namespace=s'=> \$namespace,
+	'extension=s'=> \$extension,
+	'author=s'=> \$author,
+	'description=s'=> \$description,
+	'help' => \$help
+) or die ($usageString."\n");
+
+die ($usageString."\n") unless
+	( defined($headerToMake) 
+		and defined($extension)
+		and defined($namespace));
+
+my $includeGuardName = uc("${namespace}_${headerToMake}_${extension}");
+open FILE, ">$headerToMake.$extension" or die("$!");
+
+print FILE "/*"."\n";
+print FILE " *"."\n";
+print FILE " * Author:$author"."\n" if defined($author);
+print FILE " * Description:$description"."\n" if defined($description);
+print FILE " *"."\n";
+print FILE "*/"."\n";
+print FILE "\n";
+print FILE "#ifndef $includeGuardName\n";
+print FILE "#define $includeGuardName\n";
+print FILE "\n";
+print FILE "\n";
+print FILE "namespace ".$namespace."{\n";
+print FILE "\n";
+print FILE "}";
+print FILE "\n";
+print FILE "#endif\n";

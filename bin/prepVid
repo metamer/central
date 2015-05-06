@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+
+##
+# Prepare video links to be able to open from vlc
+##
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+
+my $url;
+my $help;
+
+my $usageString = "usage: $0 [-h] url";
+
+GetOptions(
+	'help' => \$help
+) or die ($usageString."\n");
+
+$url=shift();
+die ($usageString."\n") unless
+	( defined($url) );
+
+
+if($url =~ m/youtube\./i){
+	$url =~ s/embed/watch/ ;
+}
+print $url;
