@@ -27,3 +27,4 @@ COMMAND lynx %s
 #COMMAND netscape -remote 'openURL(%s)'
 #COMMAND url_handler.sh
 
+WRAP yes

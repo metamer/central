@@ -30,7 +30,6 @@ alias dvorak='setxkbmap dvorak -option ctrl:nocaps'
 alias uskb='setxkbmap us'
 
 eval $(keychain --eval)
-#export WEECHAT_PASSPHRASE=$(pass weechat.sec)
 export GPG_TTY=$(tty)
 
 fortune -c | cowsay -f tux
