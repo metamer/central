@@ -1,2 +1,2 @@
 #!/bin/sh
-ls -d ~/media/img/wallpapers/* | randomLine | xargs -I{} hsetroot -full {}
+find ~/media/img/wallpapers -type l -print | randomLine | xargs -I{} hsetroot -full {}
