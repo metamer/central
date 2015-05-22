@@ -1,4 +1,6 @@
 set history=0
+set editor=vim
+
 = Zenburn color scheme ==
 " name: Zenburn
 " file: zenburn.vimp
