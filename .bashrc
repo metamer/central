@@ -29,7 +29,7 @@ alias indicterm='urxvt -fn "xft:Siddhanta:antialias=false:size=14,xft:Unifont:an
 alias dvorak='setxkbmap dvorak -option ctrl:nocaps'
 alias uskb='setxkbmap us'
 
-eval $(keychain --eval)
+eval $(keychain --quiet --eval)
 export GPG_TTY=$(tty)
 
 fortune -c | cowsay -f tux
