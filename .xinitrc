@@ -14,6 +14,7 @@ fi
 syndaemon -i 0.7 -t -k &
 xflux -l 40 -g -74
 setxkbmap dvorak -option ctrl:nocaps
+numlockx &
 # exec gnome-session
 # exec startkde
 # exec startxfce4
