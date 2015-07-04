@@ -39,7 +39,7 @@ set nowrap
 filetype plugin on
 filetype indent plugin on
 
-"if running terminal with 256 colors, use zenburn
+"if running terminal with 256 colors, use gruvbox
 if has('syntax')
     syntax on
              if &term == 'xterm'
@@ -47,7 +47,7 @@ if has('syntax')
 	     endif
 
 	     if &t_Co == 256
-	     	colorscheme zenburn_transparent
+	     	colorscheme gruvbox_transparent
 	     else
 	     	colorscheme default
 	     endif
