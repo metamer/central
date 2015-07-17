@@ -11,6 +11,6 @@ xset fp rehash
 reloadWallpaper &> /dev/null
 
 ## start apps here ##
+urxvtd &
 thunderbird &
 firefox &
-urxvtd &
