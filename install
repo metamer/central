@@ -6,7 +6,7 @@ target_dir=$HOME
 mkdir -p ${target_dir}/.xmonad
 
 #main loop
-for src in .bash_profile  .bashrc  bin  .ctags  .lftprc  .lynx  .lynxrc  .screenrc  .slrnrc  .urlview .vim  .vimrc  .vimperatorrc   .Xdefaults  .xinitrc  .xmonad/xmonad.hs  .Xresources  .xrdb  .profile
+for src in .bash_profile  .bashrc  bin  .ctags  .lftprc  .lynx  .lynxrc  .screenrc  .slrnrc  .urlview .vim  .vimrc  .vimperatorrc   .Xdefaults  .xinitrc  .xmonad/xmonad.hs  .Xresources  .xrdb  .profile .xmobarrc
 do
 		target=${target_dir}/${src}
 		if [ ! -e $target ]
