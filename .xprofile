@@ -1,0 +1,16 @@
+#!/usr/bin/sh
+
+#syndaemon -i 0.7 -t -k &
+#xflux -l 40 -g -74
+#setxkbmap dvorak -option ctrl:nocaps
+#numlockx &
+
+xsetroot -cursor_name left_ptr
+xset +fp /usr/share/fonts/local
+xset fp rehash
+reloadWallpaper &> /dev/null
+
+## start apps here ##
+thunderbird &
+firefox &
+urxvtd &

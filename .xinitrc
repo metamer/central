@@ -11,10 +11,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-syndaemon -i 0.7 -t -k &
-xflux -l 40 -g -74
-setxkbmap dvorak -option ctrl:nocaps
-numlockx &
+#syndaemon -i 0.7 -t -k &
+#xflux -l 40 -g -74
+#setxkbmap dvorak -option ctrl:nocaps
+#numlockx &
 # exec gnome-session
 # exec startkde
 # exec startxfce4
@@ -22,16 +22,16 @@ numlockx &
 ###LXDE
 #exec startlxde
 ###xmonad
-xsetroot -cursor_name left_ptr
-xset +fp /usr/share/fonts/local
-xset fp rehash
-reloadWallpaper &> /dev/null
+#xsetroot -cursor_name left_ptr
+#xset +fp /usr/share/fonts/local
+#xset fp rehash
+#reloadWallpaper &> /dev/null
 
 ## start apps here ##
-thunderbird &
-firefox &
-urxvtd &
-urxvtc --name 'newsbeuter' -e 'newsbeuter -r' &
+#thunderbird &
+#firefox &
+#urxvtd &
+#urxvtc --name 'newsbeuter' -e 'newsbeuter -r' &
 
-exec xmonad
+#exec xmonad
 #exec startlxde
