@@ -139,8 +139,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     --, ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
-    , ((modm              , xK_Delete ), spawn "xbacklight -dec 10")
-    , ((modm              , xK_Insert ), spawn "xbacklight -inc 10")
+    , ((modm              , xK_Delete ), spawn "xbacklight -dec 5")
+    , ((modm              , xK_Insert ), spawn "xbacklight -inc 5")
     , ((modm              , xK_Pause   ), spawn "amixer set Master toggle")
     , ((modm              , xK_End   ), spawn "amixer set Master 5%-")
     , ((modm              , xK_Home   ), spawn "amixer set Master 5%+")
