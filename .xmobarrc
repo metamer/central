@@ -13,7 +13,7 @@ Config {
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
    -- , template = "%StdinReader% }{%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %KSMQ% | %date% || %kbd% "
-   , template = "%StdinReader% }{%battery% | %multicpu% | %memory% | %date% || %kbd% "
+   , template = "%StdinReader% }{%KSMQ% | %battery% | %multicpu% | %memory% | %date% || %kbd% "
 
 
    -- general behavior
