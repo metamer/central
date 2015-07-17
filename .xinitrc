@@ -26,5 +26,12 @@ xsetroot -cursor_name left_ptr
 xset +fp /usr/share/fonts/local
 xset fp rehash
 reloadWallpaper &> /dev/null
+
+## start apps here ##
+thunderbird &
+firefox &
+urxvtd &
+urxvtc --name 'newsbeuter' -e 'newsbeuter -r' &
+
 exec xmonad
 #exec startlxde

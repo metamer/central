@@ -13,7 +13,12 @@ import System.Exit
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Util.EZConfig
 import XMonad.Layout.HintedGrid
-import XMonad.Layout.Circle
+import XMonad.Layout.Tabbed
+import XMonad.Hooks.DynamicLog
+import Control.Monad (liftM2)
+import XMonad.Layout.IM
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.ResizableTile -- Actions.WindowNavigation is nice too
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -21,7 +26,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "urxvt"
+myTerminal      = "urxvtc"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -51,7 +56,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["1","2","3","4","5","web","mail","notification"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -134,11 +139,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     --, ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
-    , ((modm              , xF86XK_MonBrightnessDown   ), spawn "xbacklight -dec 10")
-    , ((modm              , xF86XK_MonBrightnessUp   ), spawn "xbacklight -inc 10")
-    , ((modm              , xF86XK_AudioMute   ), spawn "amixer set Master toggle")
-    , ((modm              , xF86XK_AudioLowerVolume   ), spawn "amixer set Master 10%-")
-    , ((modm              , xF86XK_AudioRaiseVolume   ), spawn "amixer set Master 10%+")
+    , ((modm              , xK_Delete ), spawn "xbacklight -dec 10")
+    , ((modm              , xK_Insert ), spawn "xbacklight -inc 10")
+    , ((modm              , xK_Pause   ), spawn "amixer set Master toggle")
+    , ((modm              , xK_End   ), spawn "amixer set Master 5%-")
+    , ((modm              , xK_Home   ), spawn "amixer set Master 5%+")
     , ((modm              , xF86XK_Eject   ), spawn "eject")
 	-- ="XF86MonBrightnessDown"> ="XF86MonBrightnessUp"> ="XF86AudioMute"> ="XF86AudioLowerVolume"> ="XF86AudioRaiseVolume">  ="XF86Eject">
 
@@ -193,7 +198,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = Grid False ||| tiled ||| Mirror tiled ||| Circle  ||| Full
+myLayout =  tiled ||| Mirror tiled ||| simpleTabbed  ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -206,6 +211,7 @@ myLayout = Grid False ||| tiled ||| Mirror tiled ||| Circle  ||| Full
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
+
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -223,10 +229,20 @@ myLayout = Grid False ||| tiled ||| Mirror tiled ||| Circle  ||| Full
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
+    [ 
+      role =? "GtkFileChooserDialog" --> viewShift "notification"
+    , role =? "GtkFileChooserDialog" --> (ask >>= doF . W.sink)
+    , (role =? "gimp-toolbox" <||> role =? "gimp-image-window") --> (ask >>= doF . W.sink)
+    , className =? "Firefox"        --> doShift "web"
+    , className =? "Tor Browser"        --> doShift "web"
+    , className =? "Chromium"       --> doShift "web"
+    , className =? "Thunderbird"    --> doShift "mail"
+    , resource =? "newsbeuter"     --> doShift "mail"
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    , resource  =? "kdesktop"       --> doIgnore 
+	]
+	where viewShift = doF . liftM2 (.) W.greedyView W.shift
+	      role = stringProperty "WM_WINDOW_ROLE"
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -262,7 +278,7 @@ myStartupHook = return ()
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = xmonad =<< xmobar defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
