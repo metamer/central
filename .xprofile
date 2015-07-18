@@ -14,5 +14,6 @@ reloadWallpaper &> /dev/null
 urxvtd &
 thunderbird &
 firefox &
-urxvt -e 'newsbeuter' &
-urxvt -e 'slrn' &
+urxvtc -e sh -c 'newsbeuter -r' &
+urxvtc -e 'slrn' &
+urxvtc -e bash -c 'screenfetch -o WM=xmonad && read' & ## display screenfetch and wait for input
