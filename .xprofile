@@ -14,3 +14,4 @@ reloadWallpaper &> /dev/null
 urxvtd &
 thunderbird &
 firefox &
+urxvtc -e 'newsbeuter' &
