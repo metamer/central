@@ -59,7 +59,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1","2","3","4","5","web","mail","media","notif"]
+myWorkspaces    = ["1","2","3","4","5","web","mail","media","game"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -243,9 +243,7 @@ myLayout =
 --
 myManageHook = composeAll
     [ 
-      role =? "GtkFileChooserDialog" --> viewShift "notif"
-    , role =? "GtkFileChooserDialog" --> (ask >>= doF . W.sink)
-    , className =? "Vlc" --> doShift "media"
+     className =? "Vlc" --> doShift "media"
     , className =? "Gpicview" --> viewShift "media"
     , className =? "feh" --> viewShift "media"
     , (role =? "gimp-toolbox" <||> role =? "gimp-image-window") --> (ask >>= doF . W.sink)
