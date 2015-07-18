@@ -32,4 +32,4 @@ alias uskb='setxkbmap us'
 eval $(keychain --quiet --eval)
 export GPG_TTY=$(tty)
 
-fortune -c | fold -s -w 50| cowsay -f tux
+fortune -c | fold -s -w 50 | boxes -f /etc/boxes-config -a c -d parchment
