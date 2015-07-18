@@ -18,6 +18,7 @@ import XMonad.Layout.HintedGrid
 import XMonad.Layout.IM
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Reflect
 import XMonad.Layout.ResizableTile -- Actions.WindowNavigation is nice too
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Tabbed
@@ -200,16 +201,26 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout =  smartBorders (tiled ||| Mirror tiled ||| simpleTabbed  ||| Full)
+myLayout =  
+			modWorkspace "web" smartBorders $
+			onWorkspace "web" (Mirror mainTiled ||| simpleTabbed) $
+			modWorkspace "mail" smartBorders $
+			onWorkspace "mail" (simpleTabbed ||| Full) $
+            smartBorders (Mirror flipTiled ||| medTiled ||| simpleTabbed  ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
+     mainTiled   = Tall nmaster delta big_ratio
+     medTiled   = Tall nmaster delta medium_ratio
+     flipTiled   = reflectHoriz $ Tall nmaster delta ratio
 
      -- The default number of windows in the master pane
      nmaster = 1
 
      -- Default proportion of screen occupied by master pane
      ratio   = 1/2
+     medium_ratio   = 2/32/3
+     big_ratio   = 3/4
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
@@ -234,8 +245,8 @@ myManageHook = composeAll
     [ 
       role =? "GtkFileChooserDialog" --> viewShift "notif"
     , role =? "GtkFileChooserDialog" --> (ask >>= doF . W.sink)
-    , className =? "gpicview" --> viewShift "media"
-    , className =? "Vlc" --> viewShift "media"
+    , className =? "Vlc" --> doShift "media"
+    , className =? "Gpicview" --> viewShift "media"
     , className =? "feh" --> viewShift "media"
     , (role =? "gimp-toolbox" <||> role =? "gimp-image-window") --> (ask >>= doF . W.sink)
     , className =? "Firefox"        --> doShift "web"
@@ -288,7 +299,7 @@ xmobar' = statusBar xmobar pp toggleStrutsKey
 			, ppHidden  = xmobarColor "#dddddd" ""
 			, ppHiddenNoWindows = xmobarColor "#777777" ""
 			, ppUrgent  = xmobarColor "#ff0000" ""
-			, ppLayout  = \y -> ""
+			--, ppLayout  = \y -> ""
 			, ppTitle   = xmobarColor "lightblue" ""
 		}
         toggleStrutsKey = const (mod4Mask, xK_b)
