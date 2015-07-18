@@ -5,7 +5,7 @@ Config {
      font =         "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
    , bgColor =      "black"
    , fgColor =      "#646464"
-   , position =     Top
+   , position =     Bottom
    , border =       BottomB
    , borderColor =  "#646464"
 
@@ -13,7 +13,7 @@ Config {
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
    -- , template = "%StdinReader% }{%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %KSMQ% | %date% || %kbd% "
-   , template = "%StdinReader% }{%KSMQ% | %battery% | %multicpu% | %memory% | %date% || %kbd% "
+   , template = "%StdinReader% }{%battery% | %multicpu% | %memory% | %date% || %kbd% "
 
 
    -- general behavior

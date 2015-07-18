@@ -274,11 +274,25 @@ myLogHook = return ()
 myStartupHook = return ()
 
 ------------------------------------------------------------------------
+-- shamelessly copied from https://github.com/tonyskn/.dotfiles/blob/master/_xmonad/xmonad.hs
+xmobar' = statusBar xmobar pp toggleStrutsKey
+    where
+        xmobar = "xmobar"
+        pp = xmobarPP {
+			ppCurrent = xmobarColor "#3399ff" ""
+			, ppHidden  = xmobarColor "#dddddd" ""
+			, ppHiddenNoWindows = xmobarColor "#777777" ""
+			, ppUrgent  = xmobarColor "#ff0000" ""
+			, ppLayout  = \y -> ""
+			, ppTitle   = xmobarColor "lightblue" ""
+		}
+        toggleStrutsKey = const (mod4Mask, xK_b)
+------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad =<< xmobar defaults
+main = xmonad =<< xmobar' defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
