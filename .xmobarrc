@@ -106,5 +106,6 @@ Config {
                              , ("us"         , "<fc=#8B0000>US</fc>")
                              ]
 		, Run StdinReader
+		--, Run MPD ["-t", "<state>: <artist> - <track>"] 10
         ]
    }
