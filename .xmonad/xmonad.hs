@@ -7,22 +7,24 @@
 -- Normally, you'd only override those defaults you care about.
 --
 
-import XMonad
-import Data.Monoid
-import System.Exit
-import Graphics.X11.ExtraTypes.XF86
-import XMonad.Util.EZConfig
-import XMonad.Layout.HintedGrid
-import XMonad.Layout.Tabbed
-import XMonad.Hooks.DynamicLog
+
 import Control.Monad (liftM2)
+import Data.Monoid
+import Graphics.X11.ExtraTypes.XF86
+import System.Exit
+import XMonad
+import XMonad.Hooks.DynamicLog
+import XMonad.Layout.HintedGrid
 import XMonad.Layout.IM
+import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.ResizableTile -- Actions.WindowNavigation is nice too
+import XMonad.Layout.Tabbed
+import XMonad.Layout.Tabbed
+import XMonad.Util.EZConfig
 
-import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
-
+import qualified XMonad.StackSet as W
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
@@ -56,7 +58,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1","2","3","4","5","web","mail","notification"]
+myWorkspaces    = ["1","2","3","4","5","media","web","mail","notif"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -198,7 +200,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout =  tiled ||| Mirror tiled ||| simpleTabbed  ||| Full
+myLayout =  smartBorders (tiled ||| Mirror tiled ||| simpleTabbed  ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -230,8 +232,11 @@ myLayout =  tiled ||| Mirror tiled ||| simpleTabbed  ||| Full
 --
 myManageHook = composeAll
     [ 
-      role =? "GtkFileChooserDialog" --> viewShift "notification"
+      role =? "GtkFileChooserDialog" --> viewShift "notif"
     , role =? "GtkFileChooserDialog" --> (ask >>= doF . W.sink)
+    , className =? "gpicview" --> viewShift "media"
+    , className =? "Vlc" --> viewShift "media"
+    , className =? "feh" --> viewShift "media"
     , (role =? "gimp-toolbox" <||> role =? "gimp-image-window") --> (ask >>= doF . W.sink)
     , className =? "Firefox"        --> doShift "web"
     , className =? "Tor Browser"        --> doShift "web"
