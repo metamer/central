@@ -32,4 +32,4 @@ alias uskb='setxkbmap us'
 eval $(keychain --quiet --eval)
 export GPG_TTY=$(tty)
 
-fortune -c | cowsay -f tux
+fortune -c | fold -s -w 50| cowsay -f tux
