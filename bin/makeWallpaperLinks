@@ -3,7 +3,8 @@
 #TODO: add options for dirs
 
 WALLPAPER_DIR=${HOME}/media/img/wallpapers  
-IMG_DIR=${HOME}/media/img 
+CROP_DIR=${HOME}/media/img/crop
+ALBUM_DIR=${HOME}/media/img/raw/fine_arts/music
 TMP_DIR=/tmp 
 BLACKLIST_FILE=${HOME}/media/img/wallpaper.blacklist 
 
@@ -11,8 +12,9 @@ BLACKLIST_FILE=${HOME}/media/img/wallpaper.blacklist
 find $WALLPAPER_DIR -type l -delete
 
 ## create new links ##
-find $IMG_DIR -type f -exec file {} \; | awk -F: '{ if ($2 ~/image/) print $1}' | xargs -I{} -n1 basename {}  | grep -vf ${BLACKLIST_FILE} > ${TMP_DIR}/targetPaths
-
-find $IMG_DIR -type f -exec file {} \; | awk -F: '{ if ($2 ~/image/) print $1}' | xargs -I{} -n1 readlink -f {} | grep -vf ${BLACKLIST_FILE} > ${TMP_DIR}/sourcePaths
+find $CROP_DIR -type f -exec file {} \; | awk -F: '{ if ($2 ~/image/) print $1}' | xargs -I{} -n1 basename {}  | grep -vf ${BLACKLIST_FILE} > ${TMP_DIR}/targetPaths
+find $CROP_DIR -type f -exec file {} \; | awk -F: '{ if ($2 ~/image/) print $1}' | xargs -I{} -n1 readlink -f {} | grep -vf ${BLACKLIST_FILE} > ${TMP_DIR}/sourcePaths
+find $ALBUM_DIR -type f -exec file {} \; | awk -F: '{ if ($2 ~/image/) print $1}' | xargs -I{} -n1 basename {}  | grep -vf ${BLACKLIST_FILE} >> ${TMP_DIR}/targetPaths
+find $ALBUM_DIR -type f -exec file {} \; | awk -F: '{ if ($2 ~/image/) print $1}' | xargs -I{} -n1 readlink -f {} | grep -vf ${BLACKLIST_FILE} >> ${TMP_DIR}/sourcePaths
 
 paste  -d"\n" ${TMP_DIR}/sourcePaths ${TMP_DIR}/targetPaths |  parallel -N2 ln -s {1} ${WALLPAPER_DIR}/{2}
