@@ -206,6 +206,10 @@ myLayout =
 			onWorkspace "web" (Mirror mainTiled ||| simpleTabbed) $
 			modWorkspace "mail" smartBorders $
 			onWorkspace "mail" (simpleTabbed ||| Full) $
+			modWorkspace "game" smartBorders $
+			onWorkspace "game" (simpleTabbed ||| Full) $
+			modWorkspace "media" smartBorders $
+			onWorkspace "media" (simpleTabbed ||| Full) $
             smartBorders (Mirror flipTiled ||| medTiled ||| simpleTabbed  ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
@@ -219,7 +223,7 @@ myLayout =
 
      -- Default proportion of screen occupied by master pane
      ratio   = 1/2
-     medium_ratio   = 2/32/3
+     medium_ratio   = 2/3
      big_ratio   = 3/4
 
      -- Percent of screen to increment by when resizing panes
@@ -251,7 +255,8 @@ myManageHook = composeAll
     , className =? "Tor Browser"        --> doShift "web"
     , className =? "Chromium"       --> doShift "web"
     , className =? "Thunderbird"    --> doShift "mail"
-    , resource =? "newsbeuter"     --> doShift "mail"
+    , className =? "Dwarf_Fortress" --> viewShift "game"
+    , className =? "Fusion" --> viewShift "game"
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore 
 	]
@@ -297,7 +302,7 @@ xmobar' = statusBar xmobar pp toggleStrutsKey
 			, ppHidden  = xmobarColor "#dddddd" ""
 			, ppHiddenNoWindows = xmobarColor "#777777" ""
 			, ppUrgent  = xmobarColor "#ff0000" ""
-			--, ppLayout  = \y -> ""
+			, ppLayout  = \y -> ""
 			, ppTitle   = xmobarColor "lightblue" ""
 		}
         toggleStrutsKey = const (mod4Mask, xK_b)
