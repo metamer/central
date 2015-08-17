@@ -9,12 +9,17 @@ xsetroot -cursor_name left_ptr
 xset +fp /usr/share/fonts/local
 xset fp rehash
 reloadWallpaper &> /dev/null
+xautolock -time 5 -locker 'systemctl suspend' &
+xset -b
 
 ## start apps here ##
 urxvtd &
-thunderbird &
-firefox &
+icedove &
+icecat &
 vlc &
+urxvt -e bash -c 'figlet -f slant "  Welcome  " | boxes -f /etc/boxes-config  -d shell && screenfetch && read' & ## display screenfetch and wait for input
+urxvt -e bash -c 'fortune issa-haiku | fold -s -w 50 | boxes -f /etc/boxes-config -a c -d parchment && read' & 
 urxvt -e sh -c 'newsbeuter -r' &
 urxvt -e 'slrn' &
-urxvt -e bash -c 'screenfetch -o WM=xmonad && read' & ## display screenfetch and wait for input
+# random word
+#urxvt -e bash -c 'aspell dump master | randomLine | figlet -f slant | boxes -f /etc/boxes-config  -d shell && read' & ## display screenfetch and wait for input

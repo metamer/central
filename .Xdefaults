@@ -7,13 +7,13 @@ xterm*Foreground:               gray
 
 XTerm*cursorColor: #DCDCCC
 XTerm*vt100.faceName: DejaVuSansMono
-XTerm*vt100.faceSize: 12
+XTerm*vt100.faceSize: 24
 XTerm*vt100.renderFont: true
 
 uxterm*cursorColor: #DCDCCC
 UXTerm*vt100.faceName: unifont
 UXTerm*vt100.renderFont: true
-UXTerm*vt100.faceSize: 20
+UXTerm*vt100.faceSize: 24
 
 #urxvt
 ! General
@@ -39,9 +39,9 @@ urxvt.cutchars:        `()'*<>[]{|}"
 
 ! Appearance
 !  - use a bitmap font
-URxvt.font: xft:DejaVuSansMono:size=12,\
+URxvt.font: xft:DejaVuSansMono:size=24,\
 				xft:Siddhanta:antialias=false,\
-				xft:Unifont:antialias=false:size=12
+				xft:Unifont:antialias=false:size=24
 
 !  - use xft for drawing fonts
 !urxvt*font:       xft:Terminus:8

@@ -28,6 +28,7 @@ alias cvid='cvlc --quiet --vout caca'
 alias indicterm='urxvt -fn "xft:Siddhanta:antialias=false:size=14,xft:Unifont:antialias=false" '
 alias dvorak='setxkbmap dvorak -option ctrl:nocaps'
 alias uskb='setxkbmap us'
+alias chromium='chromium --incognito'
 
 eval $(keychain --quiet --eval)
 export GPG_TTY=$(tty)

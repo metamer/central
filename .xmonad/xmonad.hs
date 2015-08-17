@@ -75,7 +75,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Bitstream Vera Sans Mono-18'")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -251,9 +251,11 @@ myManageHook = composeAll
     , className =? "Gpicview" --> viewShift "media"
     , className =? "feh" --> viewShift "media"
     , (role =? "gimp-toolbox" <||> role =? "gimp-image-window") --> (ask >>= doF . W.sink)
+    , className =? "Icecat"        --> doShift "web"
     , className =? "Firefox"        --> doShift "web"
     , className =? "Tor Browser"        --> doShift "web"
     , className =? "Chromium"       --> doShift "web"
+    , className =? "Icedove"    --> doShift "mail"
     , className =? "Thunderbird"    --> doShift "mail"
     , className =? "Dwarf_Fortress" --> viewShift "game"
     , className =? "Fusion" --> viewShift "game"
