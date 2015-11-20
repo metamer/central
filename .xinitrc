@@ -32,6 +32,13 @@ fi
 #firefox &
 #urxvtd &
 #urxvtc --name 'newsbeuter' -e 'newsbeuter -r' &
+#urxvtd &
+#xsetroot -cursor_name left_ptr
+#xset +fp /usr/share/fonts/local
+#xset fp rehash
+#reloadWallpaper &> /dev/null
+#xautolock -time 5 -locker 'systemctl suspend' &
+#xset -b
 
-#exec xmonad
+exec xmonad
 #exec startlxde

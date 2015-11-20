@@ -209,7 +209,7 @@ myLayout =
 			modWorkspace "game" smartBorders $
 			onWorkspace "game" (simpleTabbed ||| Full) $
 			modWorkspace "media" smartBorders $
-			onWorkspace "media" (simpleTabbed ||| Full) $
+			onWorkspace "media" (simpleTabbed ||| GridRatio (4/3) False ||| Full) $
             smartBorders (Mirror flipTiled ||| medTiled ||| simpleTabbed  ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
@@ -343,3 +343,4 @@ defaults = defaultConfig {
         logHook            = myLogHook,
         startupHook        = myStartupHook
     }
+

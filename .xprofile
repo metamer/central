@@ -1,9 +1,10 @@
 #!/usr/bin/sh
 
+compton &
 #syndaemon -i 0.7 -t -k &
-#xflux -l 40 -g -74
-#setxkbmap dvorak -option ctrl:nocaps
-#numlockx &
+xflux -l 40 -g -74
+setxkbmap dvorak -option ctrl:nocaps
+numlockx &
 
 xsetroot -cursor_name left_ptr
 xset +fp /usr/share/fonts/local
@@ -20,6 +21,6 @@ vlc &
 urxvt -e bash -c 'figlet -f slant "  Welcome  " | boxes -f /etc/boxes-config  -d shell && screenfetch && read' & ## display screenfetch and wait for input
 urxvt -e bash -c 'fortune issa-haiku | fold -s -w 50 | boxes -f /etc/boxes-config -a c -d parchment && read' & 
 urxvt -e sh -c 'newsbeuter -r' &
-urxvt -e 'slrn' &
+#urxvt -e 'slrn' &
 # random word
 #urxvt -e bash -c 'aspell dump master | randomLine | figlet -f slant | boxes -f /etc/boxes-config  -d shell && read' & ## display screenfetch and wait for input

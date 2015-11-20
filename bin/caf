@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+echo "Disabling auto-off features"
+xset s off
+xset -dpms
+xautolock -disable

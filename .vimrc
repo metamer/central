@@ -6,6 +6,9 @@ syntax on
 "always show status line
 set laststatus=2
 
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'base16'
+
 "hardstatus line
 " adapted from http://www.plainlystated.com/2009/05/vim-statusline/
 set statusline=
@@ -41,16 +44,16 @@ filetype indent plugin on
 
 "if running terminal with 256 colors, use gruvbox
 if has('syntax')
-    syntax on
-             if &term == 'xterm'
-	     	set t_Co=256
-	     endif
+		syntax on
+		if &term == 'xterm'
+				set t_Co=256
+		endif
 
-	     if &t_Co == 256
-	     	colorscheme gruvbox_transparent
-	     else
-	     	colorscheme default
-	     endif
+		if &t_Co == 256
+				colorscheme gruvbox_transparent
+		else
+				colorscheme default
+		endif
 endif
 
 
@@ -85,6 +88,6 @@ set wildmenu
 runtime ftplugin/man.vim
 
 augroup filetypedetect
-  " Mail
-  autocmd BufRead,BufNewFile *mutt-*              setfiletype mail
+		" Mail
+		autocmd BufRead,BufNewFile *mutt-*              setfiletype mail
 augroup END

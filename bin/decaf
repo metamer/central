@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+echo "Enabling auto-off features"
+xset s on
+xset +dpms
+xautolock -enable
