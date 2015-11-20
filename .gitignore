@@ -6,3 +6,4 @@ bin/startRemote
 .vim/.netrwhist
 .vim/doc/*
 .vim/plugin/*
+*.swp
